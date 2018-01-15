@@ -16,7 +16,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="warranty") 
+@XmlAccessorType(XmlAccessType.NONE)
 @Entity
 public class Warranty implements  Serializable{
 @Id 
@@ -32,48 +39,64 @@ private SoftwareProduct software;
 private Client client;
 @OneToMany(mappedBy = "warranty", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 private Set<WarrantyIssue> warranty_issues = new HashSet<WarrantyIssue>();
+
+@XmlElement
 public Integer getWarranty_id() {
 	return warranty_id;
 }
 public void setWarranty_id(Integer warranty_id) {
 	this.warranty_id = warranty_id;
 }
+
+@XmlElement
 public Date getDate_created() {
 	return date_created;
 }
 public void setDate_created(Date date_created) {
 	this.date_created = date_created;
 }
+
+@XmlElement
 public Integer getValability() {
 	return Valability;
 }
 public void setValability(Integer valability) {
 	Valability = valability;
 }
+
+@XmlElement
 public String getLicense_key() {
 	return license_key;
 }
 public void setLicense_key(String license_key) {
 	this.license_key = license_key;
 }
+
+@XmlElement
 public String getDescription() {
 	return description;
 }
 public void setDescription(String description) {
 	this.description = description;
 }
+
+@XmlElement
 public SoftwareProduct getSoftware() {
 	return software;
 }
 public void setSoftware(SoftwareProduct software) {
 	this.software = software;
 }
+
+@XmlElement
 public Client getClient() {
 	return client;
 }
 public void setClient(Client client) {
 	this.client = client;
 }
+
+@XmlElementWrapper(name = "warrantyissues") @XmlElement(name = "issue")
 public Set<WarrantyIssue> getWarranty_issues() {
 	return warranty_issues;
 }

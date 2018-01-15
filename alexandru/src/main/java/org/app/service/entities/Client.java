@@ -7,7 +7,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
+
+@XmlRootElement(name="client") 
+@XmlAccessorType(XmlAccessType.NONE)
 @Entity
 public class Client extends User1 {
 
@@ -18,36 +26,48 @@ public class Client extends User1 {
 	private String email_adress;
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Request> request_change = new HashSet<Request>();
+	
+	@XmlElement
 	public String getFiscal_code() {
 		return fiscal_code;
 	}
 	public void setFiscal_code(String fiscal_code) {
 		this.fiscal_code = fiscal_code;
 	}
+	
+	@XmlElement
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@XmlElement
 	public String getPhone_number() {
 		return phone_number;
 	}
 	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
 	}
+	
+	@XmlElement
 	public String getAdress() {
 		return adress;
 	}
 	public void setAdress(String adress) {
 		this.adress = adress;
 	}
+	
+	@XmlElement
 	public String getEmail_adress() {
 		return email_adress;
 	}
 	public void setEmail_adress(String email_adress) {
 		this.email_adress = email_adress;
 	}
+	
+	@XmlElementWrapper(name = "requests") @XmlElement(name = "request")
 	public Set<Request> getRequest_change() {
 		return request_change;
 	}

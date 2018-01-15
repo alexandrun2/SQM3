@@ -9,8 +9,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
+@XmlRootElement(name="request") 
+@XmlAccessorType(XmlAccessType.NONE)
 @Entity
 public class Request implements Serializable  {
 	@Id
@@ -28,54 +34,72 @@ public class Request implements Serializable  {
 	private Employee manager;
 	@ManyToOne
 	private SoftwareProduct software_product;
+	
+	@XmlElement
 	public Integer getRequest_id() {
 		return request_id;
 	}
 	public void setRequest_id(Integer request_id) {
 		this.request_id = request_id;
 	}
+	
+	@XmlElement
 	public Date getDate_of_registration() {
 		return date_of_registration;
 	}
 	public void setDate_of_registration(Date date_of_registration) {
 		this.date_of_registration = date_of_registration;
 	}
+	
+	@XmlElement
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	@XmlElement
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	@XmlElement
 	public String getType_of_request() {
 		return type_of_request;
 	}
 	public void setType_of_request(String type_of_request) {
 		this.type_of_request = type_of_request;
 	}
+	
+	//@XmlElement
 	public Client getClient() {
 		return client;
 	}
 	public void setClient(Client client) {
 		this.client = client;
 	}
+	
+	@XmlElement
 	public Team getTeam() {
 		return team;
 	}
 	public void setTeam(Team team) {
 		this.team = team;
 	}
+	
+	@XmlElement
 	public Employee getManager() {
 		return manager;
 	}
 	public void setManager(Employee manager) {
 		this.manager = manager;
 	}
+	
+	@XmlElement
 	public SoftwareProduct getSoftware_product() {
 		return software_product;
 	}

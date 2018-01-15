@@ -19,4 +19,6 @@ public interface ClientDataService extends EntityRepository<Client> {
 	
 	Collection<Client> getClients();
 	
+	Client getClientById(Integer clientId);
+	
 }

@@ -10,7 +10,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name="issue") 
+@XmlAccessorType(XmlAccessType.NONE)
 @Entity
 public class WarrantyIssue  implements /*Comparable<WarrantyIssue>,*/ Serializable {
 @Id /*@GeneratedValue @NotNull*/
@@ -24,36 +30,48 @@ private Warranty warranty;
 @ManyToOne
 private Employee employee;
 
+
+@XmlElement
 public Integer getIssue_id() {
 	return issue_id;
 }
 public void setIssue_id(Integer issue_id) {
 	this.issue_id = issue_id;
 }
+
+@XmlElement
 public String getIssue_details() {
 	return issue_details;
 }
 public void setIssue_details(String issue_details) {
 	this.issue_details = issue_details;
 }
+
+@XmlElement
 public Date getIssue_date() {
 	return issue_date;
 }
 public void setIssue_date(Date issue_date) {
 	this.issue_date = issue_date;
 }
+
+@XmlElement
 public String getStatus() {
 	return status;
 }
 public void setStatus(String status) {
 	this.status = status;
 }
+
+//@XmlElement
 public Warranty getWarranty() {
 	return warranty;
 }
 public void setWarranty(Warranty warranty) {
 	this.warranty = warranty;
 }
+
+//@XmlElement
 public Employee getEmployee() {
 	return employee;
 }

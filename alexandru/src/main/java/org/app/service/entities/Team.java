@@ -11,7 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+@XmlRootElement(name="team") 
+@XmlAccessorType(XmlAccessType.NONE)
 @Entity
 public class Team implements Serializable {
 
@@ -22,24 +30,33 @@ public class Team implements Serializable {
 	private Set<Employee> employee = new HashSet<Employee>();
 	@OneToMany(mappedBy = "team", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Request> requests = new HashSet<Request>();
+	
+	@XmlElement
 	public Integer getTeam_id() {
 		return team_id;
 	}
 	public void setTeam_id(Integer team_id) {
 		this.team_id = team_id;
 	}
+	
+	@XmlElement
 	public String getTeam_name() {
 		return team_name;
 	}
 	public void setTeam_name(String team_name) {
 		this.team_name = team_name;
 	}
+	
+	
+	@XmlElementWrapper(name = "employees") @XmlElement(name = "employee")
 	public Set<Employee> getEmployee() {
 		return employee;
 	}
 	public void setEmployee(Set<Employee> employee) {
 		this.employee = employee;
 	}
+	
+	//@XmlElementWrapper(name = "requests") @XmlElement(name = "request")
 	public Set<Request> getRequests() {
 		return requests;
 	}
@@ -62,6 +79,15 @@ public class Team implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	public static String BASE_URL = "http://localhost:8080/alexandru/data/teams/";
+	@XmlElement(name = "link")
+    public AtomLink getLink() throws Exception {
+		String restUrl = BASE_URL + this.getTeam_id();
+        return new AtomLink(restUrl, "get-team");
+    }	
+	
+	public void setLink(AtomLink link){}
 	
 	
 	

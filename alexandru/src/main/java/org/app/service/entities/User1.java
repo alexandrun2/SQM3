@@ -8,7 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
+
+//@XmlRootElement(name="user") 
+//@XmlAccessorType(XmlAccessType.NONE)
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User1  implements /*Comparable<User1>,*/ Serializable {
@@ -17,18 +24,24 @@ public class User1  implements /*Comparable<User1>,*/ Serializable {
 	private Integer Id_User;
 	private String user_name;
 	private String user_password;
+	
+	//@XmlElement
 	public Integer getId_User() {
 		return Id_User;
 	}
 	public void setId_User(Integer id_User) {
 		Id_User = id_User;
 	}
+	
+	//@XmlElement
 	public String getUser_name() {
 		return user_name;
 	}
 	public void setUser_name(String user_name) {
 		this.user_name = user_name;
 	}
+	
+	//@XmlElement
 	public String getUser_password() {
 		return user_password;
 	}

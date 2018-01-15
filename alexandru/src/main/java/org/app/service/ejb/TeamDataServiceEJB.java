@@ -7,10 +7,12 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.ws.rs.Path;
 
 import org.app.patterns.EntityRepositoryBase;
 import org.app.service.entities.Team;
 
+@Path("teams")  /* http://localhost:8080/MSD-S4/data/teams */
 @Stateless @LocalBean
 public class TeamDataServiceEJB extends EntityRepositoryBase<Team> 
 implements TeamDataService{

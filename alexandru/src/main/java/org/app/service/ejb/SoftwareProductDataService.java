@@ -6,6 +6,7 @@ import javax.ejb.Remote;
 
 import org.app.patterns.EntityRepository;
 import org.app.service.entities.SoftwareProduct;
+import org.app.service.entities.Team;
 
 @Remote
 public interface SoftwareProductDataService extends EntityRepository<SoftwareProduct> {
@@ -18,6 +19,6 @@ public interface SoftwareProductDataService extends EntityRepository<SoftwarePro
 	
 	Collection<SoftwareProduct> getSoftwareProducts();
 	
-	
+	SoftwareProduct getSoftwareProductById(Integer softId);
 	
 }
